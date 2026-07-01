@@ -7,12 +7,13 @@ import morgan from "morgan"
 //2. Creo la aplicación de Express
 const app = express(); //Creo una instancia de Express y la guardo en la variable app. Crea la aplicación/servidor
 
+//Middlewares. Funciones intermedias
 //3. Configuración de middlewares (filtros o pasos previos antes de responder):
-app.use(cors()); //quiero que mi servidor use esta función antes de llegar a los endpoints
-app.use(morgan("dev")); //morgan sirve para que la terminal muestre cada request que llega al servidor.
+app.use(cors()); //quiero que mi servidor use esta función antes de llegar a los endpoints. Permite conexiones remotas.
 app.use(express.json()) //permite que el servidor entienda datos en formato JSON
+app.use(morgan("dev")); //morgan sirve para que la terminal muestre cada request que llega al servidor.
 
-//4. Creo los endpoints
+//4. Creo los endpoints/rutas/URLs
 //4. A. Endpoint Productos
 app.get("/api/productos", (req,res) => { //app.get(...) → define un endpoint de tipo GET / "/api/productos" → es la ruta que alguien va a consultar
     const productos = [
