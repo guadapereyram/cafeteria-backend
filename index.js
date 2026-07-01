@@ -3,6 +3,8 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan"
+import { dirname } from "path"; //Son elementos que traigo de node
+import { fileURLToPath } from 'url'
 
 //2. Creo la aplicación de Express
 const app = express(); //Creo una instancia de Express y la guardo en la variable app. Crea la aplicación/servidor
@@ -12,6 +14,11 @@ const app = express(); //Creo una instancia de Express y la guardo en la variabl
 app.use(cors()); //quiero que mi servidor use esta función antes de llegar a los endpoints. Permite conexiones remotas.
 app.use(express.json()) //permite que el servidor entienda datos en formato JSON
 app.use(morgan("dev")); //morgan sirve para que la terminal muestre cada request que llega al servidor.
+const __dirname = dirname(fileURLToPath(import.meta.url))
+console.log(__dirname + '/public')
+//Configurar un archivo estático como página principal
+app.use(express.static(__dirname + '/public'))
+
 
 //4. Creo los endpoints/rutas/URLs
 //4. A. Endpoint Productos
